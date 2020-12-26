@@ -3,16 +3,15 @@ import {Text, View, Button, TextInput} from 'react-native'
 import { auth } from './firebase';
 import firebase from 'firebase';
 
-function Register() {
+function Login() {
     const [email, setemail] = useState("")
     const [password, setPassword] = useState("")
-    const [name, setName] = useState("")
 
 
     const onSignUp = () => {
      
         console.log(email.email)
-        auth.createUserWithEmailAndPassword(email.email, password.password).then(result => {
+        auth.signInWithEmailAndPassword(email.email, password.password).then(result => {
             console.log(result)
         })
         .catch(error =>{
@@ -21,13 +20,8 @@ function Register() {
     }
     console.log(email)
     console.log(password)
-    console.log(name)
     return (
         <View>
-            <TextInput
-            placeholder="name"
-            onChangeText={(name) => setName({name})}
-            />
             <TextInput
             placeholder="email"
             onChangeText={(email) => setemail({email})}
@@ -40,7 +34,7 @@ function Register() {
             />
             <Button
                 onPress={()=> onSignUp()}
-                title="Sign Up"
+                title="Sign In"
                 >
                 
             </Button>
@@ -49,4 +43,4 @@ function Register() {
 }
     
 
-export default Register
+export default Login
